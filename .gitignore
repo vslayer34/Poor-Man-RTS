@@ -1,2 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
+Builds/Android/Poor Man RTS.apk
+Keys/Release/poorManRts.keystore
