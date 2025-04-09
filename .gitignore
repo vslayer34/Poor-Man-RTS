@@ -2,3 +2,4 @@
 .godot/
 Builds/Android/Poor Man RTS.apk
 Keys/Release/poorManRts.keystore
+*.apk
