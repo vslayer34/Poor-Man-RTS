@@ -3,3 +3,5 @@
 Builds/Android/Poor Man RTS.apk
 Keys/Release/poorManRts.keystore
 *.apk
+.vscode/settings.json
+.vscode/settings.json

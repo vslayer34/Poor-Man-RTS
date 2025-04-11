@@ -22,14 +22,14 @@ public partial class CameraControls : Camera2D
             // GD.Print(drag.ScreenVelocity);
             Vector2 deadZone = new Vector2(10.0f, 10.0f);
 
-            // if (drag.ScreenRelative.LengthSquared() > deadZone.LengthSquared())
-            // {
+            if (drag.ScreenRelative.LengthSquared() > deadZone.LengthSquared())
+            {
                 _screenMoveDirection = drag.ScreenRelative;
-            // }
+            }
 
             // GD.Print(drag.ScreenVelocity);
             GD.Print(drag.Velocity.Length());
-            _screenFingerSpeed = Mathf.Clamp(drag.Velocity.Length(), _cameraSpeed / 4.0f, _cameraSpeed);
+            _screenFingerSpeed = Mathf.Clamp(drag.Velocity.Length(), _cameraSpeed / 10.0f, _cameraSpeed);
 
             if (drag.ScreenRelative == Vector2.Zero)
             {
