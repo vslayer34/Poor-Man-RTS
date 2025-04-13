@@ -12,8 +12,13 @@
 position = Vector2(415, 483)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(574, 333)
+position = Vector2(2, 2)
+offset = Vector2(10, -10)
+limit_left = -910
+limit_top = -630
+limit_right = 2500
+limit_bottom = 1200
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("3_8gbba")
-_cameraSpeed = 1000.0
+_cameraSpeed = 3000.0

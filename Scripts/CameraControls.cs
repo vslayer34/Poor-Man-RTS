@@ -20,7 +20,7 @@ public partial class CameraControls : Camera2D
             // GD.Print(drag.Relative);
             // GD.Print(drag.IsCanceled());
             // GD.Print(drag.ScreenVelocity);
-            Vector2 deadZone = new Vector2(10.0f, 10.0f);
+            Vector2 deadZone = new Vector2(7.0f, 7.0f);
 
             if (drag.ScreenRelative.LengthSquared() > deadZone.LengthSquared())
             {
