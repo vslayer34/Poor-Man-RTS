@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4fnhf15yex0k"]
+[gd_scene load_steps=5 format=3 uid="uid://c4fnhf15yex0k"]
 
 [ext_resource type="PackedScene" uid="uid://cpexw7vgyo22t" path="res://Scenes/Levels/level_01.tscn" id="1_wcy3j"]
 [ext_resource type="PackedScene" uid="uid://c3nhklsovhgfd" path="res://Scenes/Buildings/hq_building.tscn" id="2_xgao4"]
 [ext_resource type="Script" uid="uid://b3ope0vpca8y1" path="res://Scripts/CameraControls.cs" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://b525d578qkw4o" path="res://Scenes/Enemies/orc.tscn" id="4_jjvhh"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,3 +21,7 @@ script = ExtResource("3_8gbba")
 _cameraSpeed = 3000.0
 _minimumZoom = Vector2(0.5, 0.5)
 _maximumZoom = Vector2(1.5, 1.5)
+
+[node name="Orc" parent="." instance=ExtResource("4_jjvhh")]
+z_index = 1
+position = Vector2(418, 605)

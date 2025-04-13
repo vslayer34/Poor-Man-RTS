@@ -25,7 +25,7 @@ adjustment_saturation = 1.59
 environment = SubResource("Environment_grbll")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.884164, 0.140778, 0.445462, 0.420414, -0.17606, 0.890087, 0.203733, 0.974261, 0.0964811, 0, 0, 0)
+transform = Transform3D(0.243586, 0.966881, 0.0761981, 0.420414, -0.17606, 0.890087, 0.874024, -0.184778, -0.449376, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 300.0
