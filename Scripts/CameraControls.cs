@@ -1,14 +1,23 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class CameraControls : Camera2D
 {
     [Export]
     private float _cameraSpeed = 10.0f;
 
+    [Export]
+    private Vector2 _minimumZoom;
+
+    [Export]
+    private Vector2 _maximumZoom;
+
     private Vector2 _screenMoveDirection;
 
     private float _screenFingerSpeed;
+
+    private Dictionary<int, Vector2> _touchIndexes = new Dictionary<int, Vector2>();
 
 
 
@@ -28,12 +37,30 @@ public partial class CameraControls : Camera2D
             }
 
             // GD.Print(drag.ScreenVelocity);
-            GD.Print(drag.Velocity.Length());
+            // GD.Print(drag.Velocity.Length());
             _screenFingerSpeed = Mathf.Clamp(drag.Velocity.Length(), _cameraSpeed / 10.0f, _cameraSpeed);
 
             if (drag.ScreenRelative == Vector2.Zero)
             {
                 _screenMoveDirection = Vector2.Zero;
+            }
+
+            if (_touchIndexes.Count > 1)
+            {
+                GD.Print("Start Zoooooooooming");
+                var pivotIndex = drag.Index == 1 ? 0 : 1;
+                Vector2 pivotVector = _touchIndexes[pivotIndex];
+
+                Vector2 movingFingerOldPosition = _touchIndexes[drag.Index];
+                Vector2 movingFingerCurrentPosition = drag.Position;
+
+                Vector2 oldVector = movingFingerOldPosition - pivotVector;
+                Vector2 currentVector = movingFingerCurrentPosition - pivotVector;
+
+                var deltaScale = currentVector.Length() / oldVector.Length();
+                Zoom *= deltaScale;
+                Zoom = Zoom.Clamp(_minimumZoom, _maximumZoom);
+                _touchIndexes[drag.Index] = movingFingerCurrentPosition;
             }
         }
 
@@ -43,11 +70,16 @@ public partial class CameraControls : Camera2D
             // GD.Print(touch.Position);
             // Reset the camera movement
             // GD.Print(touch.Index);
-            GD.Print(touch.IsCanceled());
-
-            if (touch.IsCanceled())
+            GD.Print("Tocuhed");
+            if (!_touchIndexes.ContainsKey(touch.Index))
             {
-                
+                _touchIndexes.Add(touch.Index, touch.Position);
+            }
+
+            if (!touch.Pressed)
+            {
+                GD.Print("Lifted");
+                _touchIndexes.Remove(touch.Index);
             }
             _screenMoveDirection = Vector2.Zero;
             // if (!tocuh.Canceled)
@@ -60,7 +92,10 @@ public partial class CameraControls : Camera2D
 
     public override void _Process(double delta)
     {
-        MoveCamera(_screenMoveDirection, (float)delta);
+        if (_touchIndexes.Count == 1)
+        {
+            MoveCamera(_screenMoveDirection, (float)delta);
+        }
     }
 
     // Member Methods------------------------------------------------------------------------------

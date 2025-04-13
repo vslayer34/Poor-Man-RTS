@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpkjlnjcgfsb8"]
+
+[ext_resource type="PackedScene" uid="uid://djss6462iwq8b" path="res://Assets/Karnak_Temple/Karnak_Temple1_export.fbx" id="1_8g4v4"]
+[ext_resource type="Texture2D" uid="uid://d2kue7qq0ivsv" path="res://Assets/Karnak_Temple/Textures/Karnak_base_color.png" id="2_3nkg2"]
+[ext_resource type="Texture2D" uid="uid://m0qgd2qub7w0" path="res://Assets/Karnak_Temple/Textures/Karnak_Normal.png" id="3_vdgp8"]
+[ext_resource type="Texture2D" uid="uid://cej4smvgjvhy4" path="res://Assets/Karnak_Temple/Textures/Karnak_roughenss.png" id="4_g64k6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8g4v4"]
+albedo_texture = ExtResource("2_3nkg2")
+roughness_texture = ExtResource("4_g64k6")
+normal_enabled = true
+normal_texture = ExtResource("3_vdgp8")
+
+[node name="Karnak_Temple1_export" instance=ExtResource("1_8g4v4")]
+
+[node name="Karnak_Temple_001" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_8g4v4")

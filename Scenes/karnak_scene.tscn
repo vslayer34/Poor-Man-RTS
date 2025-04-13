@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2kj21sqiaa0g"]
+
+[ext_resource type="PackedScene" uid="uid://dpkjlnjcgfsb8" path="res://Scenes/karnak_temple_1_export.tscn" id="1_2gi0u"]
+[ext_resource type="LightmapGIData" uid="uid://c10u4u1vdc6kj" path="res://Scenes/karnak_scene.lmbake" id="2_caaxl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_caaxl"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_awd0a"]
+sky_material = SubResource("ProceduralSkyMaterial_caaxl")
+
+[sub_resource type="Environment" id="Environment_grbll"]
+background_mode = 2
+sky = SubResource("Sky_awd0a")
+tonemap_mode = 2
+ssr_fade_out = 87.4265
+glow_enabled = true
+adjustment_enabled = true
+adjustment_saturation = 1.59
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_grbll")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.884164, 0.140778, 0.445462, 0.420414, -0.17606, 0.890087, 0.203733, 0.974261, 0.0964811, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 300.0
+
+[node name="Karnak_Temple1_export2" parent="." instance=ExtResource("1_2gi0u")]
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+light_data = ExtResource("2_caaxl")
