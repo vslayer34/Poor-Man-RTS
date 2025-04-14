@@ -1,6 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://b525d578qkw4o"]
+[gd_scene load_steps=37 format=3 uid="uid://b525d578qkw4o"]
 
 [ext_resource type="Texture2D" uid="uid://bssmsbbtsb5wk" path="res://Assets/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="1_wt4au"]
+[ext_resource type="Script" uid="uid://dwjsiao2rofi6" path="res://Scripts/State Machine/StateMachine.cs" id="2_rmvqa"]
+[ext_resource type="Script" uid="uid://cq0qe748uufhc" path="res://Scripts/Enemies/EnemyIdleState.cs" id="3_l04we"]
+[ext_resource type="Script" uid="uid://de8lhp3dlk7m4" path="res://Scripts/Enemies/EnemyMoveState.cs" id="4_tq37w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wt4au"]
 atlas = ExtResource("1_wt4au")
@@ -256,3 +259,12 @@ animation = &"walk"
 autoplay = "default"
 frame_progress = 0.0279134
 offset = Vector2(0, -7.02)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_rmvqa")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("3_l04we")
+
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource("4_tq37w")
