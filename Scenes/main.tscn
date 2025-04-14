@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4fnhf15yex0k"]
+[gd_scene load_steps=5 format=3 uid="uid://c4fnhf15yex0k"]
 
 [ext_resource type="Script" uid="uid://c0oeebbf77v6v" path="res://Scripts/Managers/GameManager.cs" id="1_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cpexw7vgyo22t" path="res://Scenes/Levels/level_01.tscn" id="1_wcy3j"]
-[ext_resource type="PackedScene" uid="uid://c3nhklsovhgfd" path="res://Scenes/Buildings/hq_building.tscn" id="2_xgao4"]
 [ext_resource type="PackedScene" uid="uid://chfo7n4sqcthd" path="res://Scenes/Gameplay Esenntials/game_play_camera.tscn" id="3_kry3j"]
-[ext_resource type="PackedScene" uid="uid://bx2fx21lh25ul" path="res://Scenes/Resources/gold_mine.tscn" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://m7jfocty8wa4" path="res://Scenes/UI/HUD/hud.tscn" id="6_21xkr"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("LoadedLevel")]
@@ -13,14 +11,8 @@ LoadedLevel = NodePath("Level01")
 
 [node name="Level01" parent="." instance=ExtResource("1_wcy3j")]
 
-[node name="HQBuilding" parent="." instance=ExtResource("2_xgao4")]
-position = Vector2(415, 483)
-
 [node name="GamePlayCamera" parent="." instance=ExtResource("3_kry3j")]
 position = Vector2(2, 2)
 zoom = Vector2(1, 1)
-
-[node name="GoldMine" parent="." instance=ExtResource("5_21xkr")]
-position = Vector2(928, 858)
 
 [node name="HUD" parent="." instance=ExtResource("6_21xkr")]

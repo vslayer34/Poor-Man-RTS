@@ -8,4 +8,7 @@ z_index = 1
 script = ExtResource("1_uwc7e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -129)
 texture = ExtResource("1_e414b")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]

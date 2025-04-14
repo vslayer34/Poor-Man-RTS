@@ -238,7 +238,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5kv1c")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 8.0
 }, {
 "frames": [{
@@ -299,8 +299,7 @@ script = ExtResource("1_c0dt2")
 position = Vector2(0, -34)
 sprite_frames = SubResource("SpriteFrames_cxbs8")
 animation = &"carry_resources_idle"
-autoplay = "default"
-frame_progress = 0.264394
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -36)
