@@ -66,7 +66,6 @@ public abstract partial class State : Node
         {
             SetProcess(true);
             SetPhysicsProcess(true);
-            GD.Print(Name + "Entered");
         }
     }
 
@@ -76,7 +75,6 @@ public abstract partial class State : Node
         {
             SetProcess(false);
             SetPhysicsProcess(false);
-            GD.Print(Name + "Exited");
         }
     }
 }

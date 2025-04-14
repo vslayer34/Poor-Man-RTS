@@ -58,7 +58,7 @@ public partial class StateMachine : Node
             
             _activeState = _nextState;
 
-            EmitSignal(SignalName.OnStateEntered, _nextState);
+            EmitSignal(SignalName.OnStateEntered, _activeState);
         }
     }
 }

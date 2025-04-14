@@ -2,6 +2,8 @@ using Godot;
 using PoorManRTS.StateMachine;
 using System;
 
+
+namespace PoorManRTS.Enemies.States;
 public partial class EnemyIdleState : State
 {
     protected override void EnterState(State enteredState)
