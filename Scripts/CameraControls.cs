@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
 public partial class CameraControls : Camera2D
 {
@@ -70,7 +70,6 @@ public partial class CameraControls : Camera2D
             // GD.Print(touch.Position);
             // Reset the camera movement
             // GD.Print(touch.Index);
-            GD.Print("Tocuhed");
             if (!_touchIndexes.ContainsKey(touch.Index))
             {
                 _touchIndexes.Add(touch.Index, touch.Position);
@@ -78,7 +77,6 @@ public partial class CameraControls : Camera2D
 
             if (!touch.Pressed)
             {
-                GD.Print("Lifted");
                 _touchIndexes.Remove(touch.Index);
             }
             _screenMoveDirection = Vector2.Zero;

@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx2fx21lh25ul"]
+
+[ext_resource type="Script" uid="uid://c6y4jhyqnd5x3" path="res://Scripts/Resources/GoldMine/GoldMine.cs" id="1_35xex"]
+[ext_resource type="Texture2D" uid="uid://bfdvalnojngbt" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Inactive.png" id="1_hoege"]
+[ext_resource type="Script" uid="uid://bnhnvu0mvj6oo" path="res://Scripts/Resources/GoldMine/ActiveSprite.cs" id="2_slttp"]
+[ext_resource type="Texture2D" uid="uid://bl8qc4vx1gprx" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Active.png" id="3_35xex"]
+[ext_resource type="Texture2D" uid="uid://ggq3p1iqdn75" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Destroyed.png" id="4_mcskd"]
+
+[node name="GoldMine" type="Node2D"]
+z_index = 1
+script = ExtResource("1_35xex")
+
+[node name="ActiveSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+texture = ExtResource("4_mcskd")
+script = ExtResource("2_slttp")
+_validSprites = Dictionary[int, Texture2D]({
+0: ExtResource("1_hoege"),
+1: ExtResource("3_35xex"),
+2: ExtResource("4_mcskd")
+})

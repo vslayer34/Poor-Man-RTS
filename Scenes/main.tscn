@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fnhf15yex0k"]
+[gd_scene load_steps=6 format=3 uid="uid://c4fnhf15yex0k"]
 
 [ext_resource type="PackedScene" uid="uid://cpexw7vgyo22t" path="res://Scenes/Levels/level_01.tscn" id="1_wcy3j"]
 [ext_resource type="PackedScene" uid="uid://c3nhklsovhgfd" path="res://Scenes/Buildings/hq_building.tscn" id="2_xgao4"]
-[ext_resource type="Script" uid="uid://b3ope0vpca8y1" path="res://Scripts/CameraControls.cs" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://chfo7n4sqcthd" path="res://Scenes/Gameplay Esenntials/game_play_camera.tscn" id="3_kry3j"]
 [ext_resource type="PackedScene" uid="uid://b525d578qkw4o" path="res://Scenes/Enemies/orc.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://bx2fx21lh25ul" path="res://Scenes/Resources/gold_mine.tscn" id="5_21xkr"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,16 +13,12 @@
 [node name="HQBuilding" parent="." instance=ExtResource("2_xgao4")]
 position = Vector2(415, 483)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GamePlayCamera" parent="." instance=ExtResource("3_kry3j")]
 position = Vector2(2, 2)
-zoom = Vector2(1.5, 1.5)
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-script = ExtResource("3_8gbba")
-_cameraSpeed = 3000.0
-_minimumZoom = Vector2(0.5, 0.5)
-_maximumZoom = Vector2(1.5, 1.5)
 
 [node name="Orc" parent="." instance=ExtResource("4_jjvhh")]
 z_index = 1
 position = Vector2(418, 605)
+
+[node name="GoldMine" parent="." instance=ExtResource("5_21xkr")]
+position = Vector2(1196, 384)
