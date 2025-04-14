@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://drx7g3cmxdaky"]
+
+[ext_resource type="Script" uid="uid://4veb8hvxj8h2" path="res://Scripts/Resources Base/LevelDataContainer.cs" id="1_r24t6"]
+
+[resource]
+script = ExtResource("1_r24t6")
+GoldAmount = 500
+WoodAmount = 600

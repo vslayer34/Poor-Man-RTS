@@ -31,11 +31,16 @@ public partial class Hud : CanvasLayer
 
     private void ReadyNodeForUse()
     {
-        
+        _gameManager.OnResourcesChanged += UpdateUI;
     }
 
     private void ReadyNodeForCleanUp()
     {
+        _gameManager.OnResourcesChanged -= UpdateUI;
+    }
 
+    private void UpdateUI()
+    {
+        _resourcesLabel.UpdateResourcesUI(_gameManager.OwnedResources);   
     }
 }

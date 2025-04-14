@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://cpexw7vgyo22t"]
+[gd_scene load_steps=7 format=4 uid="uid://cpexw7vgyo22t"]
 
+[ext_resource type="Script" uid="uid://diy6ver1jq5cg" path="res://Scripts/Levels/LevelStats.cs" id="1_66ail"]
 [ext_resource type="Texture2D" uid="uid://btaeqcld2yciv" path="res://Assets/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_b3s3q"]
+[ext_resource type="Resource" uid="uid://drx7g3cmxdaky" path="res://Godot Resources/Level01.tres" id="2_ni7lu"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lvc5q"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 2, 1, 65536, 0, 65537, 65536, 1, 131073, 65536, 2, 2, 131072, 0, 65538, 131072, 1, 131074, 131072, 2)
@@ -55,6 +57,8 @@ sources/0 = SubResource("TileSetAtlasSource_lhoya")
 pattern_0 = SubResource("TileMapPattern_lvc5q")
 
 [node name="Level01" type="Node2D"]
+script = ExtResource("1_66ail")
+LevelData = ExtResource("2_ni7lu")
 
 [node name="Environment" type="Node" parent="."]
 

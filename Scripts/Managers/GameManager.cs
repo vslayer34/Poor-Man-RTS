@@ -1,12 +1,16 @@
 using Godot;
 using PoorManRTS.Helper.Structs;
+using PoorManRTS.Levels;
 using System;
 
 namespace PoorManRTS.Managerss;
 public partial class GameManager : Node2D
 {
     [Signal]
-    public delegate void GameStartedEventHandler();
+    public delegate void OnResourcesChangedEventHandler();
+
+    [Export]
+    public LevelStats LoadedLevel { get; private set; }
     public GameResources OwnedResources { get; private set; }
 
 
@@ -15,6 +19,8 @@ public partial class GameManager : Node2D
 
     public override void _Ready()
     {
-        EmitSignal(SignalName.GameStarted);
+        OwnedResources = LoadedLevel.MapResources;
+        EmitSignal(SignalName.OnResourcesChanged);
+        GD.Print(OwnedResources.goldAmount);
     }
 }
