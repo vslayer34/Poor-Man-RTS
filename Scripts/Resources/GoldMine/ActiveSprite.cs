@@ -23,19 +23,30 @@ public partial class ActiveSprite : Sprite2D
     {
         await ToSignal(Owner, SignalName.Ready);
 
-        _goldmine = GetParent<GoldMine>();
-        _activeSprite = GetNode<Sprite2D>(".");
-
-        _goldmine.GoldMineStatusChanged += ChangeMineSprite;
+        ReadyNodeForUse();
         ChangeMineSprite(_goldmine.CurrentMineStatus);
     }
 
     public override void _ExitTree()
     {
-        _goldmine.GoldMineStatusChanged -= ChangeMineSprite;
+        ReadyNodeForCleanUp();
     }
 
     // Member Methods------------------------------------------------------------------------------
+
+    private void ReadyNodeForUse()
+    {
+        _goldmine = GetParent<GoldMine>();
+        _activeSprite = GetNode<Sprite2D>(".");
+
+        _goldmine.GoldMineStatusChanged += ChangeMineSprite;
+    }
+
+    private void ReadyNodeForCleanUp()
+    {
+        _goldmine.GoldMineStatusChanged -= ChangeMineSprite;
+    }
+
     // Signal Methods------------------------------------------------------------------------------
 
     private void ChangeMineSprite(MineStatus status)
