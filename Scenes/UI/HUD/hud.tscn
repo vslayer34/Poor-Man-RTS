@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://m7jfocty8wa4"]
+
+[ext_resource type="Script" uid="uid://bbv6aeeapoygs" path="res://Scripts/UI/HUD/Hud.cs" id="1_v2yv0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v2yv0"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_v2yv0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 200
+
+[node name="GoldLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Gold: "
+label_settings = SubResource("LabelSettings_v2yv0")
+
+[node name="WoodLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Wood: "
+label_settings = SubResource("LabelSettings_v2yv0")
