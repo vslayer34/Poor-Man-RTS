@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://m7jfocty8wa4"]
+[gd_scene load_steps=4 format=3 uid="uid://m7jfocty8wa4"]
 
 [ext_resource type="Script" uid="uid://bbv6aeeapoygs" path="res://Scripts/UI/HUD/Hud.cs" id="1_v2yv0"]
+[ext_resource type="Script" uid="uid://1rfju3mt0dcr" path="res://Scripts/UI/HUD/ResourcesLabel.cs" id="2_e0a1q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v2yv0"]
 font_size = 32
@@ -10,17 +11,21 @@ outline_color = Color(0, 0, 0, 1)
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_v2yv0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ResourceLabel" type="HBoxContainer" parent="." node_paths=PackedStringArray("_woodLabel", "_goldLabel")]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 200
+script = ExtResource("2_e0a1q")
+_woodLabel = NodePath("WoodLabel")
+_goldLabel = NodePath("GoldLabel")
+metadata/_edit_use_anchors_ = true
 
-[node name="GoldLabel" type="Label" parent="HBoxContainer"]
+[node name="GoldLabel" type="Label" parent="ResourceLabel"]
 layout_mode = 2
 text = "Gold: "
 label_settings = SubResource("LabelSettings_v2yv0")
 
-[node name="WoodLabel" type="Label" parent="HBoxContainer"]
+[node name="WoodLabel" type="Label" parent="ResourceLabel"]
 layout_mode = 2
 text = "Wood: "
 label_settings = SubResource("LabelSettings_v2yv0")

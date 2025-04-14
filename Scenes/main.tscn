@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4fnhf15yex0k"]
+[gd_scene load_steps=7 format=3 uid="uid://c4fnhf15yex0k"]
 
+[ext_resource type="Script" uid="uid://c0oeebbf77v6v" path="res://Scripts/Managers/GameManager.cs" id="1_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cpexw7vgyo22t" path="res://Scenes/Levels/level_01.tscn" id="1_wcy3j"]
 [ext_resource type="PackedScene" uid="uid://c3nhklsovhgfd" path="res://Scenes/Buildings/hq_building.tscn" id="2_xgao4"]
 [ext_resource type="PackedScene" uid="uid://chfo7n4sqcthd" path="res://Scenes/Gameplay Esenntials/game_play_camera.tscn" id="3_kry3j"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://m7jfocty8wa4" path="res://Scenes/UI/HUD/hud.tscn" id="6_21xkr"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_21xkr")
 
 [node name="Level01" parent="." instance=ExtResource("1_wcy3j")]
 
