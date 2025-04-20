@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpj3ippqkb8ra"]
+[gd_scene load_steps=7 format=3 uid="uid://bpj3ippqkb8ra"]
 
-[ext_resource type="Texture2D" uid="uid://pxukxmx8b6sh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="1_2td5y"]
 [ext_resource type="Script" uid="uid://df8nhb50dyuq2" path="res://Scripts/UI/Buildings/BuildingMenuButton.cs" id="1_ov37a"]
+[ext_resource type="Resource" uid="uid://txidatentuio" path="res://Godot Resources/Units/R_PeasentBulitStats.tres" id="2_eci8o"]
 [ext_resource type="Script" uid="uid://cqdme0nieiy8t" path="res://Scripts/UI/Buildings/UnitButton.cs" id="3_eci8o"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ov37a"]
-atlas = ExtResource("1_2td5y")
-region = Rect2(64.0557, 63.2357, 63.6316, 62.6053)
 
 [sub_resource type="Animation" id="Animation_h1xnm"]
 length = 0.001
@@ -88,9 +84,9 @@ flat = true
 script = ExtResource("1_ov37a")
 _unitButton = NodePath("UnitButton")
 _animPlayer = NodePath("AnimationPlayer")
+UnitBuildStats = ExtResource("2_eci8o")
 
-[node name="UnitButton" type="Button" parent="."]
-visible = false
+[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,10 +100,45 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(35, 35)
-icon = SubResource("AtlasTexture_ov37a")
 icon_alignment = 1
 script = ExtResource("3_eci8o")
+_timeToBuildLabel = NodePath("BuildTime")
 metadata/_edit_use_anchors_ = true
+
+[node name="BuildTime" type="Label" parent="UnitButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UnitButton"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="WoodAmount" type="Label" parent="UnitButton/HBoxContainer"]
+custom_minimum_size = Vector2(8.33, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+text = "500"
+
+[node name="MarginContainer" type="MarginContainer" parent="UnitButton/HBoxContainer"]
+custom_minimum_size = Vector2(0.675, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoldAmount" type="Label" parent="UnitButton/HBoxContainer"]
+custom_minimum_size = Vector2(9.455, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "500"
+horizontal_alignment = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../UnitButton")

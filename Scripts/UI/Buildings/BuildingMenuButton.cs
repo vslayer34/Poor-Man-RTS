@@ -1,5 +1,6 @@
 using Godot;
 using PoorManRTS.Helper.Constants;
+using PoorManRTS.ResourceBase;
 using System;
 using System.Threading.Tasks;
 
@@ -12,6 +13,9 @@ public partial class BuildingMenuButton : Button
 
     [Export]
     private AnimationPlayer _animPlayer;
+
+    [Export]
+    public UnitBulitStatsGResource UnitBuildStats { get; private set; }
 
     private bool _isMenuActive = false;
 

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://txidatentuio"]
+
+[ext_resource type="Texture2D" uid="uid://pxukxmx8b6sh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="1_2mhrr"]
+[ext_resource type="Script" uid="uid://bques7cah4yax" path="res://Scripts/Resources Base/UnitBulitStatsGResource.cs" id="2_sfgav"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov37a"]
+atlas = ExtResource("1_2mhrr")
+region = Rect2(64.0557, 63.2357, 63.6316, 62.6053)
+
+[resource]
+script = ExtResource("2_sfgav")
+UnitIcon = SubResource("AtlasTexture_ov37a")
+TimeToBuild = 5.0
+UnitPrice = Dictionary[int, int]({
+0: 50,
+1: 0
+})
