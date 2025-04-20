@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 
-namespace PoorManRTS.Allies.Units;
+namespace PoorManRTS.Units.Allies;
 public partial class Peasant : Unit
 {
 }

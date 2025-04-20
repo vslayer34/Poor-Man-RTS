@@ -1,5 +1,5 @@
 using Godot;
-using PoorManRTS.Allies.Units;
+using PoorManRTS.Units.Allies;
 using PoorManRTS.Interfaces;
 using System;
 

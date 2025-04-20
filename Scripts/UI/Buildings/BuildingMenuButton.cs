@@ -13,6 +13,8 @@ public partial class BuildingMenuButton : Button
     [Export]
     private AnimationPlayer _animPlayer;
 
+    private bool _isMenuActive = false;
+
 
 
     // Game Loop Methods---------------------------------------------------------------------------
@@ -27,6 +29,20 @@ public partial class BuildingMenuButton : Button
         Pressed -= PlayButtonAnimation;
     }
 
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventScreenTouch touch)
+        {
+            if (!_isMenuActive)
+            {
+                return;
+            }
+
+            _animPlayer.PlayBackwards(Animations.UI.UnitButton.DISPLAY_BUTTON);
+            _isMenuActive = false;
+        }
+    }
+
     // Signal Methods------------------------------------------------------------------------------
 
     private void ShowUnitButton()
@@ -38,5 +54,6 @@ public partial class BuildingMenuButton : Button
     {
         _unitButton.Visible = true;
         _animPlayer.Play(Animations.UI.UnitButton.DISPLAY_BUTTON);
+        _isMenuActive = true;
     }
 }
