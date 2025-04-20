@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-namespace PoorManRTS.Allies.Units;
+namespace PoorManRTS.Units.Allies;
 public abstract partial class Unit : CharacterBody2D
 {
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://bxg3urwxqbuna"]
 
-[ext_resource type="Script" uid="uid://s5iomxglf4a6" path="res://Scripts/Allies/Units/Peasant.cs" id="1_c0dt2"]
+[ext_resource type="Script" uid="uid://s5iomxglf4a6" path="res://Scripts/Unit/Allies/Peasant.cs" id="1_c0dt2"]
 [ext_resource type="Texture2D" uid="uid://pxukxmx8b6sh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="2_cxbs8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydm2d"]

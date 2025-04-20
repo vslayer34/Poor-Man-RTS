@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpj3ippqkb8ra"]
+
+[ext_resource type="Texture2D" uid="uid://pxukxmx8b6sh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="1_2td5y"]
+[ext_resource type="Script" uid="uid://df8nhb50dyuq2" path="res://Scripts/UI/Buildings/BuildingMenuButton.cs" id="1_ov37a"]
+[ext_resource type="Script" uid="uid://cqdme0nieiy8t" path="res://Scripts/UI/Buildings/UnitButton.cs" id="3_eci8o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov37a"]
+atlas = ExtResource("1_2td5y")
+region = Rect2(64.0557, 63.2357, 63.6316, 62.6053)
+
+[sub_resource type="Animation" id="Animation_h1xnm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(89.5, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eci8o"]
+resource_name = "display_button"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(90, 60), Vector2(89.5, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rfxgr"]
+_data = {
+&"RESET": SubResource("Animation_h1xnm"),
+&"display_button": SubResource("Animation_eci8o")
+}
+
+[node name="BuildingMenuButton" type="Button" node_paths=PackedStringArray("_unitButton", "_animPlayer")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -213.0
+offset_right = 125.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(125, 125)
+focus_mode = 0
+flat = true
+script = ExtResource("1_ov37a")
+_unitButton = NodePath("UnitButton")
+_animPlayer = NodePath("AnimationPlayer")
+
+[node name="UnitButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -85.0
+offset_right = 35.5
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(35, 35)
+icon = SubResource("AtlasTexture_ov37a")
+icon_alignment = 1
+script = ExtResource("3_eci8o")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../UnitButton")
+libraries = {
+&"": SubResource("AnimationLibrary_rfxgr")
+}

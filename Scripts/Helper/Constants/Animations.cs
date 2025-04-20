@@ -1,6 +1,15 @@
 namespace PoorManRTS.Helper.Constants;
 public static class Animations
 {
+    public static class UI
+    {
+        public static class UnitButton
+        {
+            public const string DISPLAY_BUTTON = "display_button";
+        }
+    }
+
+    
     public static class Peasant
     {
         public const string IDLE = "idle";
