@@ -36,10 +36,11 @@ script = ExtResource("3_hlwry")
 _selectionWheel = NodePath("SelectionWheel")
 metadata/_edit_use_anchors_ = true
 
-[node name="SelectionWheel" parent="Button" instance=ExtResource("3_jmn7u")]
+[node name="SelectionWheel" parent="Button" node_paths=PackedStringArray("_options") instance=ExtResource("3_jmn7u")]
 visible = false
 layout_mode = 1
 offset_left = -4.0
 offset_top = -4.0
 offset_right = -4.0
 offset_bottom = -4.0
+_options = []
