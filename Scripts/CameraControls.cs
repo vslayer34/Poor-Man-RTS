@@ -34,11 +34,12 @@ public partial class CameraControls : Camera2D
             if (drag.ScreenRelative.LengthSquared() > deadZone.LengthSquared())
             {
                 _screenMoveDirection = drag.ScreenRelative;
+                _screenFingerSpeed = Mathf.Clamp(drag.Velocity.Length(), _cameraSpeed / 5.0f, _cameraSpeed);
             }
 
             // GD.Print(drag.ScreenVelocity);
             // GD.Print(drag.Velocity.Length());
-            _screenFingerSpeed = Mathf.Clamp(drag.Velocity.Length(), _cameraSpeed / 10.0f, _cameraSpeed);
+            
 
             if (drag.ScreenRelative == Vector2.Zero)
             {
@@ -101,7 +102,7 @@ public partial class CameraControls : Camera2D
     private void MoveCamera(Vector2 direction, float delta)
     {
         direction = new Vector2(-direction.X, -direction.Y);
-        // Position += direction.Normalized() * _cameraSpeed * delta * _screenFingerSpeed;
+        // Position += direction.Normalized() * _cameraSpeed * delta;
         Position += direction.Normalized() *  delta * _screenFingerSpeed;
         // GD.Print(direction);
     }

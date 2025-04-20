@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3nhklsovhgfd"]
+[gd_scene load_steps=5 format=3 uid="uid://c3nhklsovhgfd"]
 
 [ext_resource type="Texture2D" uid="uid://c7fyiqk1vo05" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="1_e414b"]
 [ext_resource type="Script" uid="uid://dx6dvmyl6eh0k" path="res://Scripts/Allies/Buildings/HqBuilding.cs" id="1_uwc7e"]
+[ext_resource type="Script" uid="uid://cyfgfaemc22v0" path="res://Scripts/UI/RadialMenuComponent.cs" id="3_hlwry"]
+[ext_resource type="PackedScene" uid="uid://bnxqns3hbc5p8" path="res://Scenes/UI/selection_wheel.tscn" id="3_jmn7u"]
 
 [node name="HQBuilding" type="Node2D"]
 z_index = 1
@@ -12,3 +14,32 @@ position = Vector2(0, -129)
 texture = ExtResource("1_e414b")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("_selectionWheel")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -264.0
+offset_right = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(164, 132)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+keep_pressed_outside = true
+flat = true
+script = ExtResource("3_hlwry")
+_selectionWheel = NodePath("SelectionWheel")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectionWheel" parent="Button" instance=ExtResource("3_jmn7u")]
+visible = false
+layout_mode = 1
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -4.0
+offset_bottom = -4.0

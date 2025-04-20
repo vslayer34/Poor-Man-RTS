@@ -12,8 +12,9 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_v2yv0")
 
 [node name="ResourceLabel" type="HBoxContainer" parent="." node_paths=PackedStringArray("_woodLabel", "_goldLabel")]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 97.0
+offset_right = 491.0
+offset_bottom = 45.0
 theme_override_constants/separation = 200
 script = ExtResource("2_e0a1q")
 _woodLabel = NodePath("WoodLabel")
