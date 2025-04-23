@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpj3ippqkb8ra"]
+[gd_scene load_steps=9 format=3 uid="uid://bpj3ippqkb8ra"]
 
 [ext_resource type="Script" uid="uid://df8nhb50dyuq2" path="res://Scripts/UI/Buildings/BuildingMenuButton.cs" id="1_ov37a"]
 [ext_resource type="Resource" uid="uid://txidatentuio" path="res://Godot Resources/Units/R_PeasentBulitStats.tres" id="2_eci8o"]
 [ext_resource type="Script" uid="uid://cqdme0nieiy8t" path="res://Scripts/UI/Buildings/UnitButton.cs" id="3_eci8o"]
+[ext_resource type="Texture2D" uid="uid://c0q6pbok2e1xb" path="res://Assets/Tiny Swords (Update 010)/Resources/Resources/W_Idle.png" id="4_h1xnm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1xnm"]
+font_size = 10
 
 [sub_resource type="Animation" id="Animation_h1xnm"]
 length = 0.001
@@ -86,7 +90,7 @@ _unitButton = NodePath("UnitButton")
 _animPlayer = NodePath("AnimationPlayer")
 UnitBuildStats = ExtResource("2_eci8o")
 
-[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel")]
+[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel", "_goldAmountLabel", "_woodAmountLabel")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,9 +104,12 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(35, 35)
+focus_mode = 0
 icon_alignment = 1
 script = ExtResource("3_eci8o")
 _timeToBuildLabel = NodePath("BuildTime")
+_goldAmountLabel = NodePath("HBoxContainer/GoldAmount")
+_woodAmountLabel = NodePath("HBoxContainer/HBoxContainer/WoodAmount")
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildTime" type="Label" parent="UnitButton"]
@@ -112,21 +119,40 @@ offset_bottom = 23.0
 text = "10"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UnitButton"]
-custom_minimum_size = Vector2(0, 15)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -23.0
+offset_right = 35.0
 grow_horizontal = 2
 grow_vertical = 0
-alignment = 2
+alignment = 1
 
-[node name="WoodAmount" type="Label" parent="UnitButton/HBoxContainer"]
-custom_minimum_size = Vector2(8.33, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="UnitButton/HBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="WoodAmount" type="Label" parent="UnitButton/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(5, 5)
 layout_mode = 2
 size_flags_horizontal = 2
 text = "500"
+label_settings = SubResource("LabelSettings_h1xnm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UnitButton/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("4_h1xnm")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UnitButton/HBoxContainer"]
 custom_minimum_size = Vector2(0.675, 0)

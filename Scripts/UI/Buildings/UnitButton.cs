@@ -2,8 +2,8 @@ using Godot;
 using PoorManRTS.Units.Allies;
 using PoorManRTS.Helper.Constants;
 using System;
-using System.Threading.Tasks;
 using PoorManRTS.ResourceBase;
+using PoorManRTS.Helper.Enums;
 
 
 namespace PoorManRTS.UI.Bulidings;
@@ -11,6 +11,12 @@ public partial class UnitButton : Button
 {
     [Export]
     private Label _timeToBuildLabel;
+
+    [Export]
+    private Label _goldAmountLabel;
+    
+    [Export]
+    private Label _woodAmountLabel;
 
     private UnitBulitStatsGResource _unitStats;
     
@@ -35,6 +41,8 @@ public partial class UnitButton : Button
     {
         Icon = _unitStats.UnitIcon;
         _timeToBuildLabel.Text = _unitStats.TimeToBuild.ToString("0");
+        _goldAmountLabel.Text = _unitStats.UnitPrice[ResourceType.Gold].ToString("0");
+        _woodAmountLabel.Text = _unitStats.UnitPrice[ResourceType.Wood].ToString("0");
     }
     
     
