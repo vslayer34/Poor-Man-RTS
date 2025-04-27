@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://diy6ver1jq5cg" path="res://Scripts/Levels/LevelStats.cs" id="1_66ail"]
 [ext_resource type="Texture2D" uid="uid://btaeqcld2yciv" path="res://Assets/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_b3s3q"]
-[ext_resource type="Resource" uid="uid://drx7g3cmxdaky" path="res://Godot Resources/Level01.tres" id="2_ni7lu"]
+[ext_resource type="Resource" uid="uid://drx7g3cmxdaky" path="res://Godot Resources/Levels/Level01.tres" id="2_ni7lu"]
 [ext_resource type="PackedScene" uid="uid://c3nhklsovhgfd" path="res://Scenes/Buildings/hq_building.tscn" id="4_dbq10"]
 [ext_resource type="PackedScene" uid="uid://bx2fx21lh25ul" path="res://Scenes/Resources/gold_mine.tscn" id="5_taws2"]
 

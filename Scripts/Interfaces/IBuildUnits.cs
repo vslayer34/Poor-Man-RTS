@@ -1,4 +1,6 @@
 using Godot;
+using Godot.Collections;
+using PoorManRTS.Helper.Enums;
 using PoorManRTS.Units.Allies;
 using System;
 
@@ -8,5 +10,5 @@ public interface IBuildUnits
 {
     void BuildUnit<T>() where T : Unit;
 
-    bool CheckForResources();
+    bool CheckForResources(Dictionary<ResourceType, int> requiredResources);
 }

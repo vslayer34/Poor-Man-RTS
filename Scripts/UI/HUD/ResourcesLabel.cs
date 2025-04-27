@@ -1,6 +1,6 @@
 using Godot;
 using PoorManRTS.Helper.Enums;
-using PoorManRTS.Helper.Structs;
+using PoorManRTS.Helper.Classes;
 using System;
 
 
@@ -23,7 +23,7 @@ public partial class ResourcesLabel : HBoxContainer
 
     public void UpdateResourcesUI(GameResources ownedResources)
     {
-        UpdateWoodLabel(ownedResources.woodAmount);
-        UpdateGoldLabel(ownedResources.goldAmount);
+        UpdateWoodLabel(ownedResources.WoodAmount);
+        UpdateGoldLabel(ownedResources.GoldAmount);
     }
 }

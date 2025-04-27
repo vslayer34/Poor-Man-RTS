@@ -71,7 +71,7 @@ public partial class BuildingMenuButton : Button
 
     private async void AddUnitToQueue()
     {
-        if (!_ownerBuilding.CheckForResources())
+        if (!_ownerBuilding.CheckForResources(UnitBuildStats.UnitPrice))
         {
             return;
         }

@@ -1,5 +1,5 @@
 using Godot;
-using PoorManRTS.Helper.Structs;
+using PoorManRTS.Helper.Classes;
 using PoorManRTS.Managerss;
 using PoorManRTS.ResourceBase;
 using System;
@@ -16,14 +16,14 @@ public partial class LevelStats : Node2D
     public GameResources MapResources { get; private set; }
 
 
-    private GameManager _gameManager;
+    public GameManager GameManager { get; private set; }
 
 
     // Game Loop Methods---------------------------------------------------------------------------
 
     public override void _Ready()
     {
-        MapResources = new GameResources{ goldAmount = LevelData.GoldAmount, woodAmount = LevelData.WoodAmount };
-        _gameManager = GetOwner<GameManager>();
+        MapResources = new GameResources{ GoldAmount = LevelData.GoldAmount, WoodAmount = LevelData.WoodAmount };
+        GameManager = GetOwner<GameManager>();
     }
 }
