@@ -18,7 +18,7 @@ public partial class StateMachine : Node
     private State _nextState;
 
     [Export]
-    private Array<State> _states = new Array<State>();
+    private Array<State> _states;
 
 
 
