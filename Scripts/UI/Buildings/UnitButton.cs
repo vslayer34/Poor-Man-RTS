@@ -13,6 +13,9 @@ public partial class UnitButton : Button
     private Label _timeToBuildLabel;
 
     [Export]
+    private Label _unitsInQueue;
+
+    [Export]
     private Label _goldAmountLabel;
     
     [Export]
@@ -43,6 +46,7 @@ public partial class UnitButton : Button
         _timeToBuildLabel.Text = unitStats.TimeToBuild.ToString("0");
         _goldAmountLabel.Text = unitStats.UnitPrice[ResourceType.Gold].ToString("0");
         _woodAmountLabel.Text = unitStats.UnitPrice[ResourceType.Wood].ToString("0");
+        _unitsInQueue.Visible = false;
     }
 
 
@@ -57,5 +61,18 @@ public partial class UnitButton : Button
     {
         _progressBar.Visible = enabled;
         _textureProgressBar.Visible = enabled;
+    }
+
+    public void UpdateUnitsInQueueNumber(int numOfUnits = 0)
+    {
+        if (numOfUnits <= 0)
+        {
+            _unitsInQueue.Visible = false;
+        }
+        else
+        {
+            _unitsInQueue.Visible = true;
+            _unitsInQueue.Text = numOfUnits.ToString();
+        }
     }
 }

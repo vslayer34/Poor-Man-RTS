@@ -59,7 +59,7 @@ public partial class CameraControls : Camera2D
                 Vector2 currentVector = movingFingerCurrentPosition - pivotVector;
 
                 var deltaScale = currentVector.Length() / oldVector.Length();
-                Zoom *= deltaScale;
+                Zoom /= deltaScale;
                 Zoom = Zoom.Clamp(_minimumZoom, _maximumZoom);
                 _touchIndexes[drag.Index] = movingFingerCurrentPosition;
             }

@@ -51,6 +51,8 @@ public class GameResources
         return true;
     }
 
+    // Getters & Setters---------------------------------------------------------------------------
+
     public int GoldAmount
     {
         get => goldAmount;

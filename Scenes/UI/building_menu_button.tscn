@@ -107,7 +107,7 @@ _animPlayer = NodePath("AnimationPlayer")
 UnitBuildStats = ExtResource("2_eci8o")
 _unitTimer = NodePath("UnitBuildTImer")
 
-[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel", "_goldAmountLabel", "_woodAmountLabel", "_progressBar", "_textureProgressBar")]
+[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel", "_unitsInQueue", "_goldAmountLabel", "_woodAmountLabel", "_progressBar", "_textureProgressBar")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -126,6 +126,7 @@ focus_mode = 0
 icon_alignment = 1
 script = ExtResource("3_eci8o")
 _timeToBuildLabel = NodePath("BuildTime")
+_unitsInQueue = NodePath("UnitsInQueue")
 _goldAmountLabel = NodePath("HBoxContainer/GoldHBoxContainer/GoldAmount")
 _woodAmountLabel = NodePath("HBoxContainer/WoodHBoxContainer/WoodAmount")
 _progressBar = NodePath("ProgressBar")
@@ -137,6 +138,17 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "10"
+
+[node name="UnitsInQueue" type="Label" parent="UnitButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "10"
+horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UnitButton"]
 layout_mode = 1

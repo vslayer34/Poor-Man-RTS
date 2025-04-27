@@ -26,7 +26,9 @@ public partial class BuildingMenuButton : Button
     private bool _isMenuActive = false;
 
     private Queue<int> _unitQueue = new Queue<int>();
+    
     private int _unitsInQueue;
+
     private bool _alreadyBuildingUnit;
 
     private IBuildUnits _ownerBuilding;
@@ -76,8 +78,8 @@ public partial class BuildingMenuButton : Button
             return;
         }
 
-        _unitsInQueue++;
-        GD.Print("Before" + _unitsInQueue);
+        UnitsInQueue++;
+        GD.Print("Before" + UnitsInQueue);
 
         if (_alreadyBuildingUnit)
         {
@@ -85,7 +87,7 @@ public partial class BuildingMenuButton : Button
             return;
         }
 
-        while (_unitsInQueue > 0)
+        while (UnitsInQueue > 0)
         {
             _alreadyBuildingUnit = true;
             _unitTimer.Start();
@@ -94,9 +96,9 @@ public partial class BuildingMenuButton : Button
 
             await ToSignal(_unitTimer, Timer.SignalName.Timeout);
             _ownerBuilding.BuildUnit<Unit>();
-            _unitsInQueue--;
+            UnitsInQueue--;
 
-            if (_unitsInQueue == 0)
+            if (UnitsInQueue == 0)
             {
                 _alreadyBuildingUnit = false;
             }
@@ -130,5 +132,17 @@ public partial class BuildingMenuButton : Button
         }
 
         _unitButton.EnableProgressBar(false);
+    }
+
+    // Getters & Setters---------------------------------------------------------------------------
+
+    public int UnitsInQueue
+    {
+        get => _unitsInQueue;
+        set
+        {
+            _unitsInQueue = value;
+            _unitButton.UpdateUnitsInQueueNumber(UnitsInQueue);
+        }
     }
 }
