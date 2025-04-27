@@ -293,6 +293,7 @@ radius = 23.0
 height = 64.0
 
 [node name="peasant" type="CharacterBody2D"]
+z_index = 5
 script = ExtResource("1_c0dt2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

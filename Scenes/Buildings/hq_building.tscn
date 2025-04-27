@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3nhklsovhgfd"]
+[gd_scene load_steps=5 format=3 uid="uid://c3nhklsovhgfd"]
 
 [ext_resource type="Texture2D" uid="uid://c7fyiqk1vo05" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="1_e414b"]
 [ext_resource type="Script" uid="uid://dx6dvmyl6eh0k" path="res://Scripts/Buildings/HqBuilding.cs" id="1_uwc7e"]
+[ext_resource type="PackedScene" uid="uid://bxg3urwxqbuna" path="res://Scenes/Allies/peasant.tscn" id="2_hlwry"]
 [ext_resource type="PackedScene" uid="uid://bpj3ippqkb8ra" path="res://Scenes/UI/building_menu_button.tscn" id="3_jmn7u"]
 
 [node name="HQBuilding" type="Node2D"]
 z_index = 1
 script = ExtResource("1_uwc7e")
+_unitScene = ExtResource("2_hlwry")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -129)

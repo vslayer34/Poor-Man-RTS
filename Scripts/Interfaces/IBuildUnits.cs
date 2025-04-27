@@ -7,4 +7,6 @@ namespace PoorManRTS.Interfaces;
 public interface IBuildUnits
 {
     void BuildUnit<T>() where T : Unit;
+
+    bool CheckForResources();
 }

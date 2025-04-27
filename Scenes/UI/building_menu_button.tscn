@@ -1,12 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpj3ippqkb8ra"]
+[gd_scene load_steps=14 format=3 uid="uid://bpj3ippqkb8ra"]
 
 [ext_resource type="Script" uid="uid://df8nhb50dyuq2" path="res://Scripts/UI/Buildings/BuildingMenuButton.cs" id="1_ov37a"]
 [ext_resource type="Resource" uid="uid://txidatentuio" path="res://Godot Resources/Units/R_PeasentBulitStats.tres" id="2_eci8o"]
 [ext_resource type="Script" uid="uid://cqdme0nieiy8t" path="res://Scripts/UI/Buildings/UnitButton.cs" id="3_eci8o"]
 [ext_resource type="Texture2D" uid="uid://c0q6pbok2e1xb" path="res://Assets/Tiny Swords (Update 010)/Resources/Resources/W_Idle.png" id="4_h1xnm"]
+[ext_resource type="Texture2D" uid="uid://btnbfmr33htc0" path="res://Assets/Tiny Swords (Update 010)/Resources/Resources/G_Idle_(NoShadow).png" id="5_rfxgr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h1xnm"]
 font_size = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1xnm"]
+atlas = ExtResource("4_h1xnm")
+region = Rect2(22, 52.5, 86, 62)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk26s"]
+font_size = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv3p4"]
+atlas = ExtResource("5_rfxgr")
+region = Rect2(32, 38.5, 76, 76)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rfxgr"]
+width = 70
+height = 70
 
 [sub_resource type="Animation" id="Animation_h1xnm"]
 length = 0.001
@@ -70,7 +86,7 @@ _data = {
 &"display_button": SubResource("Animation_eci8o")
 }
 
-[node name="BuildingMenuButton" type="Button" node_paths=PackedStringArray("_unitButton", "_animPlayer")]
+[node name="BuildingMenuButton" type="Button" node_paths=PackedStringArray("_unitButton", "_animPlayer", "_unitTimer")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,8 +105,10 @@ script = ExtResource("1_ov37a")
 _unitButton = NodePath("UnitButton")
 _animPlayer = NodePath("AnimationPlayer")
 UnitBuildStats = ExtResource("2_eci8o")
+_unitTimer = NodePath("UnitBuildTImer")
 
-[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel", "_goldAmountLabel", "_woodAmountLabel")]
+[node name="UnitButton" type="Button" parent="." node_paths=PackedStringArray("_timeToBuildLabel", "_goldAmountLabel", "_woodAmountLabel", "_progressBar", "_textureProgressBar")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -108,8 +126,10 @@ focus_mode = 0
 icon_alignment = 1
 script = ExtResource("3_eci8o")
 _timeToBuildLabel = NodePath("BuildTime")
-_goldAmountLabel = NodePath("HBoxContainer/GoldAmount")
-_woodAmountLabel = NodePath("HBoxContainer/HBoxContainer/WoodAmount")
+_goldAmountLabel = NodePath("HBoxContainer/GoldHBoxContainer/GoldAmount")
+_woodAmountLabel = NodePath("HBoxContainer/WoodHBoxContainer/WoodAmount")
+_progressBar = NodePath("ProgressBar")
+_textureProgressBar = NodePath("TextureProgressBar")
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildTime" type="Label" parent="UnitButton"]
@@ -125,21 +145,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -35.0
+offset_left = -35.5
 offset_top = -23.0
-offset_right = 35.0
+offset_right = 36.5
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UnitButton/HBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+[node name="WoodHBoxContainer" type="HBoxContainer" parent="UnitButton/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="WoodAmount" type="Label" parent="UnitButton/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(5, 5)
+[node name="WoodAmount" type="Label" parent="UnitButton/HBoxContainer/WoodHBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 2
 text = "500"
@@ -147,27 +167,53 @@ label_settings = SubResource("LabelSettings_h1xnm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UnitButton/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(10, 10)
+[node name="TextureRect" type="TextureRect" parent="UnitButton/HBoxContainer/WoodHBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_h1xnm")
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_h1xnm")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UnitButton/HBoxContainer"]
-custom_minimum_size = Vector2(0.675, 0)
+[node name="GoldHBoxContainer" type="HBoxContainer" parent="UnitButton/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="GoldAmount" type="Label" parent="UnitButton/HBoxContainer"]
+[node name="GoldAmount" type="Label" parent="UnitButton/HBoxContainer/GoldHBoxContainer"]
 custom_minimum_size = Vector2(9.455, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "500"
+label_settings = SubResource("LabelSettings_kk26s")
 horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UnitButton/HBoxContainer/GoldHBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_rv3p4")
+expand_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UnitButton"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 70.0
+step = 1.0
+rounded = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UnitButton"]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+texture_progress = SubResource("NoiseTexture2D_rfxgr")
+tint_progress = Color(0, 0, 0, 0.521569)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../UnitButton")
 libraries = {
 &"": SubResource("AnimationLibrary_rfxgr")
 }
+
+[node name="UnitBuildTImer" type="Timer" parent="."]
+one_shot = true

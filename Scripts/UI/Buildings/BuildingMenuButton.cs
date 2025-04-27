@@ -1,7 +1,10 @@
 using Godot;
 using PoorManRTS.Helper.Constants;
+using PoorManRTS.Interfaces;
 using PoorManRTS.ResourceBase;
+using PoorManRTS.Units.Allies;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
@@ -9,7 +12,7 @@ namespace PoorManRTS.UI.Bulidings;
 public partial class BuildingMenuButton : Button
 {
     [Export]
-    private Button _unitButton;
+    private UnitButton _unitButton;
 
     [Export]
     private AnimationPlayer _animPlayer;
@@ -17,20 +20,37 @@ public partial class BuildingMenuButton : Button
     [Export]
     public UnitBulitStatsGResource UnitBuildStats { get; private set; }
 
+    [Export]
+    private Timer _unitTimer;
+
     private bool _isMenuActive = false;
+
+    private Queue<int> _unitQueue = new Queue<int>();
+    private int _unitsInQueue;
+    private bool _alreadyBuildingUnit;
+
+    private IBuildUnits _ownerBuilding;
 
 
 
     // Game Loop Methods---------------------------------------------------------------------------
 
-    public override void _Ready()
+    public async override void _Ready()
     {
         Pressed += PlayButtonAnimation;
+        _unitButton.SetUpUnitInfo(UnitBuildStats);
+        _unitTimer.WaitTime = UnitBuildStats.TimeToBuild;
+
+        await ToSignal(Owner, SignalName.Ready);
+        _ownerBuilding = GetOwner<IBuildUnits>();
+
+        _unitButton.Pressed += AddUnitToQueue;
     }
 
     public override void _ExitTree()
     {
         Pressed -= PlayButtonAnimation;
+        _unitButton.Pressed -= AddUnitToQueue;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -49,6 +69,40 @@ public partial class BuildingMenuButton : Button
 
     // Signal Methods------------------------------------------------------------------------------
 
+    private async void AddUnitToQueue()
+    {
+        if (!_ownerBuilding.CheckForResources())
+        {
+            return;
+        }
+
+        _unitsInQueue++;
+        GD.Print("Before" + _unitsInQueue);
+
+        if (_alreadyBuildingUnit)
+        {
+            // makes sure the while block is called once regardless of the number of clicks
+            return;
+        }
+
+        while (_unitsInQueue > 0)
+        {
+            _alreadyBuildingUnit = true;
+            _unitTimer.Start();
+
+            UpdateProgress();
+
+            await ToSignal(_unitTimer, Timer.SignalName.Timeout);
+            _ownerBuilding.BuildUnit<Unit>();
+            _unitsInQueue--;
+
+            if (_unitsInQueue == 0)
+            {
+                _alreadyBuildingUnit = false;
+            }
+        }
+    }
+
     private void ShowUnitButton()
     {
         _unitButton.Visible = true;
@@ -59,5 +113,22 @@ public partial class BuildingMenuButton : Button
         _unitButton.Visible = true;
         _animPlayer.Play(Animations.UI.UnitButton.DISPLAY_BUTTON);
         _isMenuActive = true;
+    }
+
+    private async void UpdateProgress()
+    {
+        float timer = 0.0f;
+        float maxTime = UnitBuildStats.TimeToBuild;
+
+        _unitButton.EnableProgressBar(true);
+
+        while (timer < UnitBuildStats.TimeToBuild)
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            timer += (float)GetProcessDeltaTime();
+            _unitButton.UpdatePrgressBar(timer, maxTime);
+        }
+
+        _unitButton.EnableProgressBar(false);
     }
 }
