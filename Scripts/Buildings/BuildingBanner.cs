@@ -1,7 +1,5 @@
 using Godot;
 using PoorManRTS.Interfaces;
-using System;
-using System.Threading.Tasks;
 
 
 namespace PoorManRTS.Allies.Buildings;
@@ -33,13 +31,7 @@ public partial class BuildingBanner : Node2D
         Visible = false;
         BannerButton.Visible = false;
 
-        // _bannerArea.InputEvent += MoveBanner;
-        // _bannerArea.MouseEntered += () => { GD.Print("mouse entered"); BannerPressed = true; };
-        // // _bannerArea.MouseExited += () => { GD.Print("mouse exited"); BannerPressed = false; };
-        // GD.Print(_bannerArea.GetGlobalMousePosition());
-
         BannerButton.Pressed += PlaceBanner;
-        // _shape.point
     }
 
     public override async void _UnhandledInput(InputEvent @event)
@@ -54,23 +46,8 @@ public partial class BuildingBanner : Node2D
             {
                 await ToSignal(GetTree().CreateTimer(1.0f), Timer.SignalName.Timeout);
                 BannerBeingPlaced = false;
-                // GetViewport().SetInputAsHandled();
             }
         }
-        // if (@event is InputEventScreenDrag drag && BannerBeingPlaced)
-        // {
-        //     var touchPosition = GetViewport().CanvasTransform.AffineInverse() * drag.Position;
-
-        //     // if (_bannerArea.point)
-        //     // BannerPressed = true;
-        //     GD.PrintT(_bannerArea.GetGlobalMousePosition(), touchPosition);
-        //     _isMoving = true;
-        //     GlobalPosition = _bannerArea.GetGlobalMousePosition();
-        // }
-        // else
-        // {
-        //     // BannerPressed = false;
-        // }
     }
 
     public override void _ExitTree()
@@ -80,43 +57,5 @@ public partial class BuildingBanner : Node2D
 
     // Signal Methods------------------------------------------------------------------------------
 
-    private void MoveBanner(Node viewport, InputEvent @event, long shapeIdx)
-    {
-        BannerBeingPlaced = true;
-
-        // Position = viewport.GetViewport().G
-        // GD.Print("Pressed");
-
-        // if (@event is InputEventScreenTouch touch)
-        // {
-        //     BannerPressed = true;
-        //     if (touch.Pressed)
-        //     {
-        //         BannerPressed = true;
-
-        //         GD.Print("touched");
-        //     }
-        //     else
-        //     {
-        //         GD.Print("released");
-        //         BannerPressed = false;
-        //     }
-
-        // }
-
-        // if (@event is InputEventScreenTouch drag)
-        // {
-        //     if (drag.Pressed)
-        //     {
-        //         GD.Print(drag.Position);
-        //     }
-        // }
-        
-    }
-
-    private void PlaceBanner()
-    {
-        BannerBeingPlaced = true;
-        // GlobalPosition = GetViewport().GetMousePosition();
-    }
+    private void PlaceBanner() => BannerBeingPlaced = true;
 }
