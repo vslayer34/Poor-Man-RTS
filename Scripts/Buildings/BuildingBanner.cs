@@ -44,6 +44,7 @@ public partial class BuildingBanner : Node2D
 
             if (!touch.Pressed)
             {
+                // wait for one frame to prevent placing the banner input from dismissing the build menu
                 await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 BannerBeingPlaced = false;
             }

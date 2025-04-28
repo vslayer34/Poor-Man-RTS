@@ -309,8 +309,9 @@ autoplay = "idle"
 position = Vector2(0, -36)
 shape = SubResource("CapsuleShape2D_cxbs8")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_states")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("ParentUnit", "_states")]
 script = ExtResource("3_xddi3")
+ParentUnit = NodePath("..")
 _states = []
 
 [node name="IdleState" type="Node" parent="StateMachine"]

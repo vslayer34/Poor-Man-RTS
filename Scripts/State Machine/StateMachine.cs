@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
+using PoorManRTS.Units.Allies;
 
 namespace PoorManRTS.StateMachineConfig;
 public partial class StateMachine : Node
@@ -13,6 +15,9 @@ public partial class StateMachine : Node
     [Export]
     public State InitialState { get; private set; }
 
+    [Export]
+    public Unit ParentUnit { get; private set; }
+
     private State _activeState;
     private State _nextState;
 
@@ -23,10 +28,13 @@ public partial class StateMachine : Node
 
     // Game Loop Methods---------------------------------------------------------------------------
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         InitialState = InitialState == null ? GetChild(0) as State : InitialState;
         _activeState = InitialState;
+
+        await ToSignal(Owner, SignalName.Ready);
+        // ParentUnit = GetParent<Unit>();
 
         foreach (var state in GetChildren())
         {
