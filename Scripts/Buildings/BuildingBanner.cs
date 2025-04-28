@@ -29,10 +29,11 @@ public partial class BuildingBanner : Node2D
         _ownerBuilding.HeadingBanner = this;
         Visible = false;
 
-        // _bannerArea.InputEvent += MoveBanner;
+        _bannerArea.InputEvent += MoveBanner;
         _bannerArea.MouseEntered += () => { GD.Print("mouse entered"); BannerPressed = true; };
         // _bannerArea.MouseExited += () => { GD.Print("mouse exited"); BannerPressed = false; };
         GD.Print(_bannerArea.GetGlobalMousePosition());
+        // _shape.point
     }
 
     private bool _isMoving;
@@ -71,38 +72,37 @@ public partial class BuildingBanner : Node2D
 
     // Signal Methods------------------------------------------------------------------------------
 
-    // private void MoveBanner(Node viewport, InputEvent @event, long shapeIdx)
-    // {
-    //     BannerPressed = true;
-    //     GD.Print((@event as InputEventScreenTouch).Position);
+    private void MoveBanner(Node viewport, InputEvent @event, long shapeIdx)
+    {
+        BannerPressed = true;
 
-    //     // Position = viewport.GetViewport().G
-    //     // GD.Print("Pressed");
+        // Position = viewport.GetViewport().G
+        // GD.Print("Pressed");
 
-    //     if (@event is InputEventScreenTouch touch)
-    //     {
-    //         BannerPressed = true;
-    //         if (touch.Pressed)
-    //         {
-    //             BannerPressed = true;
+        // if (@event is InputEventScreenTouch touch)
+        // {
+        //     BannerPressed = true;
+        //     if (touch.Pressed)
+        //     {
+        //         BannerPressed = true;
 
-    //             GD.Print("touched");
-    //         }
-    //         else
-    //         {
-    //             GD.Print("released");
-    //             BannerPressed = false;
-    //         }
+        //         GD.Print("touched");
+        //     }
+        //     else
+        //     {
+        //         GD.Print("released");
+        //         BannerPressed = false;
+        //     }
 
-    //     }
+        // }
 
-    //     if (@event is InputEventScreenTouch drag)
-    //     {
-    //         if (drag.Pressed)
-    //         {
-    //             GD.Print(drag.Position);
-    //         }
-    //     }
+        // if (@event is InputEventScreenTouch drag)
+        // {
+        //     if (drag.Pressed)
+        //     {
+        //         GD.Print(drag.Position);
+        //     }
+        // }
         
-    // }
+    }
 }
