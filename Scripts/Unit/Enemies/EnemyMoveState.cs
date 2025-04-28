@@ -1,5 +1,5 @@
 using Godot;
-using PoorManRTS.StateMachine;
+using PoorManRTS.StateMachineConfig;
 using System;
 
 

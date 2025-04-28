@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 
-namespace PoorManRTS.StateMachine;
+namespace PoorManRTS.StateMachineConfig;
 public abstract partial class State : Node
 {
     protected StateMachine _stateMachine;

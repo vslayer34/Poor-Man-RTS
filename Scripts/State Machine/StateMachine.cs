@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-namespace PoorManRTS.StateMachine;
+namespace PoorManRTS.StateMachineConfig;
 public partial class StateMachine : Node
 {
     [Signal]

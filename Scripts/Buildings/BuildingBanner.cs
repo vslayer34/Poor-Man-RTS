@@ -44,7 +44,7 @@ public partial class BuildingBanner : Node2D
 
             if (!touch.Pressed)
             {
-                await ToSignal(GetTree().CreateTimer(1.0f), Timer.SignalName.Timeout);
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 BannerBeingPlaced = false;
             }
         }

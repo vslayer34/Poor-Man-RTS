@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pxukxmx8b6sh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="2_cxbs8"]
 [ext_resource type="Script" uid="uid://dwjsiao2rofi6" path="res://Scripts/State Machine/StateMachine.cs" id="3_xddi3"]
 [ext_resource type="Script" uid="uid://brwy77phq185c" path="res://Scripts/Unit/Allies/Peasants/PeasantIdleState.cs" id="4_xddi3"]
-[ext_resource type="Script" uid="uid://de8lhp3dlk7m4" path="res://Scripts/Unit/Enemies/EnemyMoveState.cs" id="5_7aq38"]
+[ext_resource type="Script" uid="uid://ed7fo1bb7hry" path="res://Scripts/Unit/Allies/Peasants/PeasantMoveState.cs" id="5_xddi3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydm2d"]
 atlas = ExtResource("2_cxbs8")
@@ -317,4 +317,4 @@ _states = []
 script = ExtResource("4_xddi3")
 
 [node name="MoveState" type="Node" parent="StateMachine"]
-script = ExtResource("5_7aq38")
+script = ExtResource("5_xddi3")

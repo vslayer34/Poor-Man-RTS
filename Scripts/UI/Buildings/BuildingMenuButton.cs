@@ -22,8 +22,6 @@ public partial class BuildingMenuButton : Button
     private Timer _unitTimer;
 
     private bool _isMenuActive = false;
-
-    private Queue<int> _unitQueue = new Queue<int>();
     
     private int _unitsInQueue;
 
