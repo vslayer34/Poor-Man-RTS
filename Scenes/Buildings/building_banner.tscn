@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv4o35fy8x2eg"]
+
+[ext_resource type="Texture2D" uid="uid://2vqjij20aknq" path="res://Assets/Tiny Swords (Update 010)/Deco/17.png" id="1_6k2ss"]
+[ext_resource type="Script" uid="uid://bkm5mhtmdw7ho" path="res://Scripts/Buildings/BuildingBanner.cs" id="1_pdmd2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pdmd2"]
+radius = 22.0
+height = 88.0
+
+[node name="BuildingBanner" type="Node2D" node_paths=PackedStringArray("_bannerArea")]
+script = ExtResource("1_pdmd2")
+_bannerArea = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -42)
+texture = ExtResource("1_6k2ss")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -48)
+shape = SubResource("CapsuleShape2D_pdmd2")

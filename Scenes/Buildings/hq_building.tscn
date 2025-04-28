@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3nhklsovhgfd"]
+[gd_scene load_steps=6 format=3 uid="uid://c3nhklsovhgfd"]
 
 [ext_resource type="Texture2D" uid="uid://c7fyiqk1vo05" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="1_e414b"]
 [ext_resource type="Script" uid="uid://dx6dvmyl6eh0k" path="res://Scripts/Buildings/HqBuilding.cs" id="1_uwc7e"]
 [ext_resource type="PackedScene" uid="uid://bxg3urwxqbuna" path="res://Scenes/Allies/peasant.tscn" id="2_hlwry"]
 [ext_resource type="PackedScene" uid="uid://bpj3ippqkb8ra" path="res://Scenes/UI/building_menu_button.tscn" id="3_jmn7u"]
+[ext_resource type="PackedScene" uid="uid://cv4o35fy8x2eg" path="res://Scenes/Buildings/building_banner.tscn" id="5_wnu26"]
 
 [node name="HQBuilding" type="Node2D"]
 z_index = 1
@@ -15,5 +16,8 @@ position = Vector2(0, -129)
 texture = ExtResource("1_e414b")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, 72)
 
 [node name="BuildingMenuButton" parent="." instance=ExtResource("3_jmn7u")]
+
+[node name="BuildingBanner" parent="." instance=ExtResource("5_wnu26")]

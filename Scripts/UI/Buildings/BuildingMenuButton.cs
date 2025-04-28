@@ -63,9 +63,13 @@ public partial class BuildingMenuButton : Button
             {
                 return;
             }
-
-            _animPlayer.PlayBackwards(Animations.UI.UnitButton.DISPLAY_BUTTON);
-            _isMenuActive = false;
+            
+            if (!_ownerBuilding.HeadingBanner.BannerPressed)
+            {
+                _animPlayer.PlayBackwards(Animations.UI.UnitButton.DISPLAY_BUTTON);
+                _isMenuActive = false;
+                _ownerBuilding.IsBuldingActive = false;
+            }
         }
     }
 
@@ -115,6 +119,7 @@ public partial class BuildingMenuButton : Button
         _unitButton.Visible = true;
         _animPlayer.Play(Animations.UI.UnitButton.DISPLAY_BUTTON);
         _isMenuActive = true;
+        _ownerBuilding.IsBuldingActive = true;
     }
 
     private async void UpdateProgress()

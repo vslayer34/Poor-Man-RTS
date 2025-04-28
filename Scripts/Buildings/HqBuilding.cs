@@ -7,30 +7,34 @@ using Godot.Collections;
 using PoorManRTS.Helper.Enums;
 using System.Threading.Tasks;
 using PoorManRTS.Levels;
+using PoorManRTS.Scripts.Buildings;
 
 namespace PoorManRTS.Allies.Buildings;
-public partial class HqBuilding : Node2D, IBuildUnits
+public partial class HqBuilding : Building, IBuildUnits
 {
-    private Marker2D _spawnPoint;
 
-    [Export]
-    private PackedScene _unitScene;
+    public Marker2D SpawnPoint { get; set; }
+    public BuildingBanner HeadingBanner { get; set; }
 
-    private LevelStats _levelManager;
+    private bool _isBuldingActive;
+    public bool IsBuldingActive
+    {
+        get => _isBuldingActive;
+        set
+        {
+            _isBuldingActive = value;
+            HeadingBanner.Visible = _isBuldingActive;
+        }
+    }
 
 
 
     // Game Loop Methods---------------------------------------------------------------------------
 
-    public override async void _Ready()
+    public override void _Ready()
     {
         base._Ready();
-        _spawnPoint = GetNode<Marker2D>("SpawnPoint");
-
-        await ToSignal(Owner, SignalName.Ready);
-        GD.Print(GetOwner().Name);
-        _levelManager = GetOwner<LevelStats>();
-
+        SpawnPoint = GetNode<Marker2D>("SpawnPoint");
     }
 
 
@@ -38,11 +42,10 @@ public partial class HqBuilding : Node2D, IBuildUnits
 
     public void BuildUnit<T>() where T : Unit
     {
-        GD.Print("Build Peasent");
         var newPeasnt = _unitScene.Instantiate<Peasant>();
         GetOwner().AddChild(newPeasnt);
-        newPeasnt.Position = _spawnPoint.GlobalPosition;
-        GD.Print(GetOwner().Name);
+        newPeasnt.Position = SpawnPoint.GlobalPosition;
+        newPeasnt.HeadingDirection = HeadingBanner.GlobalPosition;
     }
 
     public bool CheckForResources(Dictionary<ResourceType, int> requiredResources)
