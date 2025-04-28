@@ -12,7 +12,10 @@ public partial class BuildingBanner : Node2D
     [Export]
     private Area2D _bannerArea;
 
-    public bool BannerPressed { get; private set; }
+    [Export]
+    public Button BannerButton { get; private set; }
+
+    public bool BannerBeingPlaced { get; private set; }
 
 
 
@@ -28,41 +31,46 @@ public partial class BuildingBanner : Node2D
         Position = _ownerBuilding.SpawnPoint.Position;
         _ownerBuilding.HeadingBanner = this;
         Visible = false;
+        BannerButton.Visible = false;
 
-        _bannerArea.InputEvent += MoveBanner;
-        _bannerArea.MouseEntered += () => { GD.Print("mouse entered"); BannerPressed = true; };
-        // _bannerArea.MouseExited += () => { GD.Print("mouse exited"); BannerPressed = false; };
-        GD.Print(_bannerArea.GetGlobalMousePosition());
+        // _bannerArea.InputEvent += MoveBanner;
+        // _bannerArea.MouseEntered += () => { GD.Print("mouse entered"); BannerPressed = true; };
+        // // _bannerArea.MouseExited += () => { GD.Print("mouse exited"); BannerPressed = false; };
+        // GD.Print(_bannerArea.GetGlobalMousePosition());
+
+        BannerButton.Pressed += PlaceBanner;
         // _shape.point
     }
 
-    private bool _isMoving;
-
-    public override async void _Input(InputEvent @event)
+    public override async void _UnhandledInput(InputEvent @event)
     {
-        if (@event is InputEventScreenTouch touch && BannerPressed)
+        if (@event is InputEventScreenTouch touch && BannerBeingPlaced)
         {
+            var touchPosition = GetViewport().CanvasTransform.AffineInverse() * touch.Position;
+            GlobalPosition = touchPosition;
+            BannerButton.ButtonPressed = false;
+
             if (!touch.Pressed)
             {
                 await ToSignal(GetTree().CreateTimer(1.0f), Timer.SignalName.Timeout);
-                BannerPressed = false;
+                BannerBeingPlaced = false;
                 // GetViewport().SetInputAsHandled();
             }
         }
-        if (@event is InputEventScreenDrag drag && BannerPressed)
-        {
-            var touchPosition = GetViewport().CanvasTransform.AffineInverse() * drag.Position;
+        // if (@event is InputEventScreenDrag drag && BannerBeingPlaced)
+        // {
+        //     var touchPosition = GetViewport().CanvasTransform.AffineInverse() * drag.Position;
 
-            // if (_bannerArea.point)
-            // BannerPressed = true;
-            GD.PrintT(_bannerArea.GetGlobalMousePosition(), touchPosition);
-            _isMoving = true;
-            GlobalPosition = _bannerArea.GetGlobalMousePosition();
-        }
-        else
-        {
-            // BannerPressed = false;
-        }
+        //     // if (_bannerArea.point)
+        //     // BannerPressed = true;
+        //     GD.PrintT(_bannerArea.GetGlobalMousePosition(), touchPosition);
+        //     _isMoving = true;
+        //     GlobalPosition = _bannerArea.GetGlobalMousePosition();
+        // }
+        // else
+        // {
+        //     // BannerPressed = false;
+        // }
     }
 
     public override void _ExitTree()
@@ -74,7 +82,7 @@ public partial class BuildingBanner : Node2D
 
     private void MoveBanner(Node viewport, InputEvent @event, long shapeIdx)
     {
-        BannerPressed = true;
+        BannerBeingPlaced = true;
 
         // Position = viewport.GetViewport().G
         // GD.Print("Pressed");
@@ -104,5 +112,11 @@ public partial class BuildingBanner : Node2D
         //     }
         // }
         
+    }
+
+    private void PlaceBanner()
+    {
+        BannerBeingPlaced = true;
+        // GlobalPosition = GetViewport().GetMousePosition();
     }
 }

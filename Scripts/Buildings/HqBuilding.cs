@@ -24,6 +24,7 @@ public partial class HqBuilding : Building, IBuildUnits
         {
             _isBuldingActive = value;
             HeadingBanner.Visible = _isBuldingActive;
+            HeadingBanner.BannerButton.Visible = _isBuldingActive;
         }
     }
 

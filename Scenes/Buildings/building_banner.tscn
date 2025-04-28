@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv4o35fy8x2eg"]
+[gd_scene load_steps=4 format=3 uid="uid://cv4o35fy8x2eg"]
 
 [ext_resource type="Texture2D" uid="uid://2vqjij20aknq" path="res://Assets/Tiny Swords (Update 010)/Deco/17.png" id="1_6k2ss"]
 [ext_resource type="Script" uid="uid://bkm5mhtmdw7ho" path="res://Scripts/Buildings/BuildingBanner.cs" id="1_pdmd2"]
@@ -7,11 +7,10 @@
 radius = 22.0
 height = 88.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pdmd2"]
-
-[node name="BuildingBanner" type="Node2D" node_paths=PackedStringArray("_bannerArea")]
+[node name="BuildingBanner" type="Node2D" node_paths=PackedStringArray("_bannerArea", "BannerButton")]
 script = ExtResource("1_pdmd2")
 _bannerArea = NodePath("Area2D")
+BannerButton = NodePath("CanvasLayer/Button")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -42)
@@ -23,5 +22,15 @@ texture = ExtResource("1_6k2ss")
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_pdmd2")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-shape = SubResource("CircleShape2D_pdmd2")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -58.0
+offset_right = 74.0
+offset_bottom = -14.0
+grow_vertical = 0
+toggle_mode = true

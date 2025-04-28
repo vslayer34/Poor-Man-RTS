@@ -64,7 +64,7 @@ public partial class BuildingMenuButton : Button
                 return;
             }
             
-            if (!_ownerBuilding.HeadingBanner.BannerPressed)
+            if (!_ownerBuilding.HeadingBanner.BannerBeingPlaced)
             {
                 _animPlayer.PlayBackwards(Animations.UI.UnitButton.DISPLAY_BUTTON);
                 _isMenuActive = false;
